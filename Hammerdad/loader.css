@@ -1,0 +1,55 @@
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.loader-wrapper.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.loader {
+    width: 100px;
+    aspect-ratio: 1;
+    display: grid;
+    color: #ffffff;
+    background: radial-gradient(farthest-side, currentColor calc(100% - 15px),#0000 calc(100% - 14px) 0);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 30px),#000 calc(100% - 29px));
+    mask: radial-gradient(farthest-side,#0000 calc(100% - 30px),#000 calc(100% - 29px));
+    border-radius: 50%;
+    animation: l19 2s infinite linear;
+    z-index: 9999;
+}
+
+.loader::before,
+.loader::after {    
+    content: "";
+    grid-area: 1/1;
+    background:
+        linear-gradient(currentColor 0 0) center,
+        linear-gradient(currentColor 0 0) center;
+    background-size: 100% 14px, 14px 100%;
+    background-repeat: no-repeat;
+}
+
+.loader::after {
+    transform: rotate(45deg);
+}
+
+@keyframes l19 { 
+    100% { transform: rotate(360deg); }     
+}
